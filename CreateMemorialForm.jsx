@@ -7,7 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Heart, Upload, X, ArrowLeft, Crown } from 'lucide-react';
-import { createMemorialPage, uploadMedia, getPremiumStatus, subscribePremium } from '../utils/api';
+// Adjust API import path to match project structure
+import { createMemorialPage, uploadMedia, getPremiumStatus, subscribePremium } from './api';
 
 const CreateMemorialForm = ({ onSuccess, onCancel, showCancel = false }) => {
   const [formData, setFormData] = useState({

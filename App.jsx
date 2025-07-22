@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import StartPage from './components/StartPage';
-import MemorialPage from './components/MemorialPage';
+// Components are located in the project root, adjust imports accordingly
+import StartPage from './StartPage';
+import MemorialPage from './MemorialPage';
 import './App.css';
 
 function App() {
