@@ -4,7 +4,8 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Heart, Plus, ArrowRight, Search } from 'lucide-react';
-import { getMemorialPagesByDevice, getMemorialPage } from '../utils/api';
+// Adjust API import path to match project structure
+import { getMemorialPagesByDevice, getMemorialPage } from './api';
 import CreateMemorialForm from './CreateMemorialForm';
 import './StartPage.css';
 
