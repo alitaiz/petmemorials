@@ -44,5 +44,5 @@ def serve(path):
 
 
 if __name__ == '__main__':
-    # Listen on port 8001 so it matches the user's firewall settings
+
     app.run(host='0.0.0.0', port=8001, debug=True)
