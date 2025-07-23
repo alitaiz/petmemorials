@@ -2,12 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Memorial Pages</title>
+    <title>Pet Memorials</title>
+    <style>
+      body{font-family: Arial, sans-serif; margin:20px;}
+      section{margin-bottom:1.5em;}
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <h1>Pet Memorials</h1>
+    <section id="create">
+      <h2>Create Memorial</h2>
+      <label>Name <input id="name" /></label><br/>
+      <label>Code (optional) <input id="code" /></label><br/>
+      <label>Content <br/><textarea id="content"></textarea></label><br/>
+      <button id="create-btn">Create</button>
+      <p id="create-status"></p>
+    </section>
+    <section id="list">
+      <h2>Your Memorials</h2>
+      <ul id="memorials"></ul>
+    </section>
+    <section id="search">
+      <h2>Open Memorial by Code</h2>
+      <input id="search-code" placeholder="code" />
+      <button id="search-btn">Open</button>
+      <p id="search-status"></p>
+      <div id="memorial-view"></div>
+    </section>
+    <script src="/main.js"></script>
   </body>
 </html>
