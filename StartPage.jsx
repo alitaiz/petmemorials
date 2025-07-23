@@ -24,9 +24,14 @@ const StartPage = ({ onNavigateToMemorial }) => {
     try {
       const response = await getMemorialPagesByDevice();
       if (response.success) {
-        setMemorialPages(response.data);
-        // Remove auto-redirect to create form for new users
-        // Always show the main page with search option and create button
+        const pages = response.data;
+        setMemorialPages(pages);
+
+        if (pages.length === 0) {
+          setShowCreateForm(true);
+        } else if (pages.length === 1) {
+          onNavigateToMemorial(pages[0].code);
+        }
       }
     } catch (error) {
       console.error('Error loading memorial pages:', error);
