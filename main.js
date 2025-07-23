@@ -18,25 +18,43 @@ async function apiRequest(url, options = {}) {
   return response.json();
 }
 
+function getStoredCodes() {
+  const data = localStorage.getItem('memorial_pages');
+  return data ? JSON.parse(data) : [];
+}
+
+function addStoredCode(code) {
+  const codes = getStoredCodes();
+  if (!codes.includes(code)) {
+    codes.push(code);
+    localStorage.setItem('memorial_pages', JSON.stringify(codes));
+  }
+}
+
 async function fetchMemorials() {
-  const deviceId = generateDeviceId();
-  const res = await apiRequest(`/memorial-pages/by-device/${deviceId}`);
-  if (res.success) {
-    const list = document.getElementById('memorials');
-    list.innerHTML = '';
-    res.data.forEach(p => {
+  const codes = getStoredCodes();
+  const list = document.getElementById('memorials');
+  list.innerHTML = '';
+  for (const code of codes) {
+    const res = await apiRequest(`/memorial-pages/${code}`);
+    if (res.success) {
       const li = document.createElement('li');
-      li.textContent = `${p.name} (${p.code})`;
-      li.addEventListener('click', () => openMemorial(p.code));
+      li.textContent = `${res.data.name} (${res.data.code})`;
+      li.addEventListener('click', () => openMemorial(res.data.code));
       list.appendChild(li);
-    });
+    }
   }
 }
 
 function showStartPage() {
-  document.getElementById('create').style.display = '';
-  document.getElementById('list').style.display = '';
-  document.getElementById('search').style.display = '';
+  const codes = getStoredCodes();
+  const create = document.getElementById('create');
+  const list = document.getElementById('list');
+  const search = document.getElementById('search');
+
+  create.style.display = codes.length === 0 ? '' : 'none';
+  list.style.display = codes.length > 0 ? '' : 'none';
+  search.style.display = codes.length > 1 ? '' : 'none';
   document.getElementById('memorial-page').style.display = 'none';
 }
 
@@ -60,6 +78,7 @@ async function createMemorial() {
   });
   if (res.success) {
     status.textContent = 'Created!';
+    addStoredCode(res.data.code);
     fetchMemorials();
     openMemorial(res.data.code);
   } else {
@@ -75,6 +94,7 @@ async function openMemorial(code, push = true) {
     status.textContent = '';
     const div = document.getElementById('memorial-view');
     div.innerHTML = `<h3>${res.data.name}</h3><pre>${res.data.content || ''}</pre>`;
+    addStoredCode(res.data.code);
     showMemorialPage();
     if (push) {
       history.pushState({ code }, '', `/memory/${code}`);
@@ -95,6 +115,17 @@ document.getElementById('back-btn').addEventListener('click', () => {
   showStartPage();
   fetchMemorials();
 });
+
+const createLink = document.getElementById('create-link');
+if (createLink) {
+  createLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.pushState({}, '', '/start');
+    document.getElementById('create').style.display = '';
+    document.getElementById('list').style.display = 'none';
+    document.getElementById('search').style.display = 'none';
+  });
+}
 
 function init() {
   if (location.pathname.startsWith('/memory/')) {

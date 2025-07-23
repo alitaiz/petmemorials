@@ -6,13 +6,13 @@
     <title>Pet Memorials</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <style>
       body {
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Quicksand', 'Roboto', sans-serif;
         margin: 0;
         padding: 20px;
-        background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+        background: linear-gradient(135deg, #fdfbfb 0%, #fdeff9 100%);
         color: #333;
       }
       .container {
@@ -21,8 +21,9 @@
       }
       h1 {
         text-align: center;
-        color: #b56576;
+        color: #8b6fcb;
         margin-top: 0;
+        font-weight: 600;
       }
       section {
         background: #fff;
@@ -44,7 +45,7 @@
         font-family: inherit;
       }
       button {
-        background-color: #b56576;
+        background-color: #f7a8b8;
         color: #fff;
         border: none;
         padding: 10px 16px;
@@ -53,14 +54,14 @@
         transition: background-color 0.2s;
       }
       button:hover {
-        background-color: #a04b61;
+        background-color: #ee8fa4;
       }
       ul {
         list-style: none;
         padding-left: 0;
       }
       li {
-        background: #f5f5f5;
+        background: #ffffffcc;
         padding: 8px;
         border-radius: 4px;
         margin-bottom: 6px;
@@ -76,7 +77,7 @@
   </head>
   <body>
     <div class="container">
-    <h1>Pet Memorials</h1>
+    <h1>🐾 Pet Memorials</h1>
     <section id="create">
       <h2>Create Memorial</h2>
       <label>Name <input id="name" /></label><br/>
@@ -88,10 +89,11 @@
     <section id="list">
       <h2>Your Memorials</h2>
       <ul id="memorials"></ul>
+      <p><a href="#" id="create-link">Create another memorial</a></p>
     </section>
     <section id="search">
-      <h2>Open Memorial by Code</h2>
-      <input id="search-code" placeholder="code" />
+      <h2>Enter memorial code</h2>
+      <input id="search-code" placeholder="e.g. milo22" />
       <button id="search-btn">Open</button>
       <p id="search-status"></p>
     </section>
