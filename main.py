@@ -9,7 +9,8 @@ from src.models.memorial import db
 from src.routes.memorial import memorial_bp
 from src.routes.admin import admin_bp
 
-app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
+# Serve static files from the project root where index.html resides
+app = Flask(__name__, static_folder=os.path.dirname(__file__))
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
 
 # Enable CORS for all routes
@@ -43,4 +44,5 @@ def serve(path):
 
 
 if __name__ == '__main__':
+  
     app.run(host='0.0.0.0', port=8001, debug=True)
